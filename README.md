@@ -6,6 +6,7 @@ This Streamlit app allows you to extract CNN news articles and convert them to a
 
 - Python 3.6 or higher
 - Required Python libraries (listed in `requirements.txt`)
+- Required system packages (listed in `packages.txt`)
 
 ## Setup
 
