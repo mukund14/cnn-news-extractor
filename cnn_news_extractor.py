@@ -42,7 +42,6 @@ def main():
             for link in article_links:
                 try:
                     article_details = extract_article_details(link)
-                    article_details['url'] = link  # Add the URL to the article details
                     articles.append(article_details)
                 except Exception as e:
                     st.sidebar.error(f"Failed to process {link}: {e}")
@@ -58,16 +57,15 @@ def main():
                     try:
                         filename = f"article_{i + 1}.mp3"
                         text_to_speech(article['text'], filename)
-                        audio_files.append((article['title'], filename, article['url']))
+                        audio_files.append((article['title'], filename))
                     except Exception as e:
                         st.error(f"Failed to convert article '{article['title']}' to audio: {e}")
             st.sidebar.success('Audio conversion complete!')
     
             # Display articles and audio files
             st.header('Extracted Articles')
-            for title, filename, url in audio_files:
+            for title, filename in audio_files:
                 with st.expander(title):
-                    st.markdown(f"[Read the full article on CNN]({url})")
                     st.audio(filename)
     
             # Step 5: Visualize Topics
